@@ -52,6 +52,17 @@ def hostname(pl, segment_info, only_if_ssh=False, exclude_domain=False):
 
 
 @requires_segment_info
+def has_write_access(pl, segment_info):
+	name = segment_info['getcwd']()
+	import os
+	allowed = os.access(name, os.W_OK)
+	if not allowed:
+		return[{
+			'contents': '',
+			'highlight_group': 'no_write'
+		}]
+
+@requires_segment_info
 def branch(pl, segment_info, status_colors=False):
 	'''Return the current VCS branch.
 

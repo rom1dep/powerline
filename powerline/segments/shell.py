@@ -72,7 +72,13 @@ def mode(pl, segment_info, override={'vicmd': 'COMMND', 'viins': 'INSERT'}, defa
 		# code or by somebody knowing what he is doing there is absolutely no 
 		# need in keeping translations dictionary.
 		return mode.upper()
+	      
+@requires_segment_info	      
+def time(pl, segment_info):
+    import time
+    time = ' %s ' % time.strftime('%H:%M:%S')
 
+    return time
 
 @requires_segment_info
 def continuation(pl, segment_info, omit_cmdsubst=True, right_align=False, renames={}):
